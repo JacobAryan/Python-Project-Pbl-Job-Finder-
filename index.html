@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder - Find Your Dream Job</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">💼</span>
+                <span class="logo-text">JobFinder</span>
+            </div>
+            <p class="tagline">21,996+ Jobs • Search Smart • Find Fast</p>
+        </div>
+    </header>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-section">
+        <form method="POST" class="search-form">
+            <div class="search-row">
+                <input
+                    type="text"
+                    name="keyword"
+                    placeholder="🔍  Job title, skill, or company  (e.g. Python, Data Analyst, TCS)"
+                    value="{{ keyword }}"
+                    class="search-input"
+                >
+                <button type="submit" class="search-btn">Search Jobs</button>
+            </div>
+            <div class="filter-row">
+                <select name="location" class="filter-select">
+                    <option value="">📍 All Locations</option>
+                    {% for loc in locations %}
+                    <option value="{{ loc }}" {% if loc == location_filter %}selected{% endif %}>{{ loc }}</option>
+                    {% endfor %}
+                </select>
+                <select name="industry" class="filter-select">
+                    <option value="">🏢 All Industries</option>
+                    {% for ind in industries %}
+                    <option value="{{ ind }}" {% if ind == industry_filter %}selected{% endif %}>{{ ind }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <main class="container">
+
+        {% if results %}
+        <div class="results-header">
+            <h2>🎯 Found <span class="highlight">{{ total }}</span> jobs
+                {% if keyword %} for "<strong>{{ keyword }}</strong>"{% endif %}
+                {% if location_filter %} in <strong>{{ location_filter }}</strong>{% endif %}
+            </h2>
+            {% if total > 50 %}<p class="note">Showing top 50 results</p>{% endif %}
+        </div>
+
+        <!-- JOB TABLE -->
+        <div class="table-wrap">
+            <table class="job-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Job Title</th>
+                        <th>Company</th>
+                        <th>Industry</th>
+                        <th>Location</th>
+                        <th>Experience</th>
+                        <th>Salary (INR)</th>
+                        <th>Posted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in results %}
+                    <tr>
+                        <td class="row-num">{{ loop.index }}</td>
+                        <td class="job-title-cell">{{ job.job_title }}</td>
+                        <td>{{ job.company }}</td>
+                        <td><span class="industry-tag">{{ job.industry }}</span></td>
+                        <td>📍 {{ job.location }}</td>
+                        <td>{{ job.experience }}</td>
+                        <td class="salary-cell">{{ job.salary }}</td>
+                        <td class="date-cell">{{ job.postdate }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- GRAPHS -->
+        {% if graphs %}
+        <div class="graphs-section">
+            <h2>📊 Analytics & Insights</h2>
+            <div class="graphs-grid">
+                {% for title, path in graphs %}
+                <div class="graph-card">
+                    <h3>{{ title }}</h3>
+                    <img src="/{{ path }}" alt="{{ title }}" class="graph-img">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% elif request.method == 'POST' %}
+        <div class="no-results">
+            <p>😕 No jobs found. Try a different keyword or broaden your filters.</p>
+        </div>
+        {% else %}
+        <div class="welcome">
+            <h2>👋 Welcome to JobFinder!</h2>
+            <p>Search from <strong>21,996 real job listings</strong> across India.</p>
+            <div class="suggestions">
+                <p>🔥 Popular searches:</p>
+                <div class="chips">
+                    <span class="chip">Python Developer</span>
+                    <span class="chip">Data Analyst</span>
+                    <span class="chip">Java</span>
+                    <span class="chip">Sales Manager</span>
+                    <span class="chip">HR</span>
+                    <span class="chip">MBA</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>Built with Flask + Pandas | Dataset: 21,996 Indian Job Listings</p>
+    </footer>
+
+</body>
+</html>

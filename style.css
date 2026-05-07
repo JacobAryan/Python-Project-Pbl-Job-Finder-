@@ -1,0 +1,196 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    color: #333;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.logo { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.logo-icon { font-size: 2rem; }
+.logo-text { font-size: 2rem; font-weight: 700; letter-spacing: 1px; }
+.tagline { margin-top: 6px; font-size: 0.9rem; opacity: 0.85; }
+
+/* SEARCH */
+.search-section {
+    background: white;
+    padding: 24px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.search-form { max-width: 900px; margin: 0 auto; }
+.search-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.search-input {
+    flex: 1;
+    padding: 13px 18px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+.search-input:focus { outline: none; border-color: #1a73e8; }
+.search-btn {
+    padding: 13px 28px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-btn:hover { background: #1558b0; }
+.filter-row { display: flex; gap: 12px; }
+.filter-select {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+}
+.filter-select:focus { outline: none; border-color: #1a73e8; }
+
+/* CONTAINER */
+.container { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+
+/* RESULTS HEADER */
+.results-header {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.results-header h2 { font-size: 1.2rem; }
+.highlight { color: #1a73e8; font-size: 1.4rem; font-weight: 700; }
+.note { font-size: 0.85rem; color: #888; margin-top: 4px; }
+
+/* TABLE */
+.table-wrap { overflow-x: auto; border-radius: 10px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+.job-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 0.9rem;
+}
+.job-table thead {
+    background: #1a73e8;
+    color: white;
+}
+.job-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.job-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.job-table tbody tr:hover { background: #f5f9ff; }
+.job-table tbody tr:last-child td { border-bottom: none; }
+.row-num { color: #aaa; font-size: 0.8rem; }
+.job-title-cell { font-weight: 600; color: #1a73e8; max-width: 220px; }
+.industry-tag {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+.salary-cell { color: #2e7d32; font-weight: 500; white-space: nowrap; }
+.date-cell { color: #888; font-size: 0.85rem; white-space: nowrap; }
+
+/* GRAPHS */
+.graphs-section {
+    margin-top: 32px;
+}
+.graphs-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: #333;
+}
+.graphs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+}
+.graph-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+.graph-card h3 {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.graph-img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* WELCOME */
+.welcome {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+.welcome h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.welcome p { color: #666; margin-bottom: 20px; }
+.suggestions p { font-size: 0.95rem; color: #888; margin-bottom: 10px; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.chip {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 1px solid #c5d8fb;
+}
+
+/* NO RESULTS */
+.no-results {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .search-row { flex-direction: column; }
+    .filter-row { flex-direction: column; }
+    .graphs-grid { grid-template-columns: 1fr; }
+}
